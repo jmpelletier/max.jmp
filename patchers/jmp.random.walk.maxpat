@@ -57,7 +57,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 3,
 					"outlettype" : [ "", "", "" ],
-					"patching_rect" : [ 96.0, 204.0, 110.0, 22.0 ],
+					"patching_rect" : [ 96.0, 126.0, 110.0, 22.0 ],
 					"text" : "routepass min max"
 				}
 
@@ -863,7 +863,7 @@
 					"numinlets" : 0,
 					"numoutlets" : 1,
 					"outlettype" : [ "float" ],
-					"patching_rect" : [ 96.0, 162.0, 30.0, 30.0 ]
+					"patching_rect" : [ 96.0, 84.0, 30.0, 30.0 ]
 				}
 
 			}
@@ -909,13 +909,6 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
-					"source" : [ "obj-11", 2 ]
-				}
-
-			}
-, 			{
-				"patchline" : 				{
-					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-11", 1 ]
 				}
 
@@ -924,6 +917,14 @@
 				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-11", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"midpoints" : [ 196.5, 177.0, 301.5, 177.0 ],
+					"source" : [ "obj-11", 2 ]
 				}
 
 			}
