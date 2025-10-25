@@ -188,25 +188,25 @@ namespace jmpmax {
 	template <typename T, typename U>
 	inline void set_bang(U class_ptr, bang_callback<T> callback)
 	{
-		addmess((method)callback, "bang", A_CANT, 0);
+		class_addmethod(class_ptr, (method)callback, "bang", A_CANT, 0);
 	}
 
 	template <typename T>
 	inline void set_bang(bang_callback<T> callback)
 	{
-		addmess((method)callback, "bang", A_CANT, 0);
+		class_addmethod(class_ptr, (method)callback, "bang", A_CANT, 0);
 	}
 
 	template <typename T, typename U>
 	inline void set_assist(U class_ptr, assist_callback<T> callback)
 	{
-		addmess((method)callback, "assist", A_CANT, 0);
+		class_addmethod(class_ptr, (method)callback, "assist", A_CANT, 0);
 	}
 
 	template <typename T>
 	inline void set_assist(assist_callback<T> callback)
 	{
-		addmess((method)callback, "assist", A_CANT, 0);
+		class_addmethod(nullptr, (method)callback, "assist", A_CANT, 0);
 	}
 
 	template <typename T>
