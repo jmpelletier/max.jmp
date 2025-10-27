@@ -4,16 +4,289 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 9,
+			"revision" : 0,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 362.0, 250.0, 1560.0, 969.0 ],
+		"rect" : [ 218.0, 90.0, 1111.0, 969.0 ],
 		"gridsize" : [ 15.0, 15.0 ],
 		"showontab" : 1,
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-2",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 0,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 218.0, 116.0, 1111.0, 943.0 ],
+						"gridsize" : [ 15.0, 15.0 ],
+						"showontab" : 2,
+						"boxes" : [ 							{
+								"box" : 								{
+									"bgmode" : 0,
+									"border" : 0,
+									"clickthrough" : 0,
+									"enablehscroll" : 0,
+									"enablevscroll" : 0,
+									"id" : "obj-4",
+									"lockeddragscroll" : 0,
+									"lockedsize" : 0,
+									"maxclass" : "bpatcher",
+									"name" : "jmp.cascade~.maxpat",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"offset" : [ 0.0, 0.0 ],
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 92.0, 237.0, 223.0, 491.0 ],
+									"varname" : "cascade",
+									"viewvisibility" : 1
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-3",
+									"maxclass" : "spectroscope~",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 215.0, 765.0, 163.0, 77.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-2",
+									"maxclass" : "spectroscope~",
+									"numinlets" : 2,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 45.0, 765.0, 163.0, 77.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "signal" ],
+									"patching_rect" : [ 92.0, 185.0, 44.0, 22.0 ],
+									"text" : "noise~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 18.0,
+									"id" : "obj-52",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 45.0, 116.0, 189.0, 27.0 ],
+									"text" : "jmp.cascade~"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-12",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 45.0, 151.0, 284.0, 20.0 ],
+									"text" : "Use inside a bpatcher"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 28.0,
+									"id" : "obj-13",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
+									"text" : "MSP"
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-2", 0 ],
+									"midpoints" : [ 101.5, 220.0, 54.5, 220.0 ],
+									"order" : 0,
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"order" : 1,
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-3", 0 ],
+									"midpoints" : [ 101.5, 743.0, 224.5, 743.0 ],
+									"source" : [ "obj-4", 0 ]
+								}
+
+							}
+ ],
+						"originid" : "pat-3358"
+					}
+,
+					"patching_rect" : [ 158.0, 653.0, 45.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
+					"text" : "p MSP",
+					"varname" : "MSP"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 0,
+					"numoutlets" : 0,
+					"patcher" : 					{
+						"fileversion" : 1,
+						"appversion" : 						{
+							"major" : 9,
+							"minor" : 0,
+							"revision" : 0,
+							"architecture" : "x64",
+							"modernui" : 1
+						}
+,
+						"classnamespace" : "box",
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
+						"gridsize" : [ 15.0, 15.0 ],
+						"showontab" : 2,
+						"boxes" : [ 							{
+								"box" : 								{
+									"id" : "obj-9",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 516.0, 248.0, 150.0, 20.0 ],
+									"text" : "Watch out!"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-7",
+									"maxclass" : "button",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "bang" ],
+									"parameter_enable" : 0,
+									"patching_rect" : [ 480.0, 246.0, 24.0, 24.0 ]
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-4",
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 2,
+									"outlettype" : [ "", "" ],
+									"patching_rect" : [ 480.0, 393.0, 67.0, 22.0 ],
+									"save" : [ "#N", "thispatcher", ";", "#Q", "end", ";" ],
+									"text" : "thispatcher"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"id" : "obj-1",
+									"linecount" : 3,
+									"maxclass" : "newobj",
+									"numinlets" : 1,
+									"numoutlets" : 1,
+									"outlettype" : [ "" ],
+									"patching_rect" : [ 480.0, 286.0, 390.0, 50.0 ],
+									"text" : "jmp.objectarray 3 bpatcher jmp.filtergraph.gui @name filter @size 230 130 @patching_offset 50 220 @patching_interval 0 150 @presentation_offset 10 220 @presentation_interval 250 0"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 18.0,
+									"id" : "obj-5",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 48.0, 130.0, 189.0, 27.0 ],
+									"text" : "jmp.objectarray"
+								}
+
+							}
+, 							{
+								"box" : 								{
+									"fontsize" : 28.0,
+									"id" : "obj-2",
+									"maxclass" : "comment",
+									"numinlets" : 1,
+									"numoutlets" : 0,
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
+									"text" : "Scripting"
+								}
+
+							}
+ ],
+						"lines" : [ 							{
+								"patchline" : 								{
+									"destination" : [ "obj-4", 0 ],
+									"source" : [ "obj-1", 0 ]
+								}
+
+							}
+, 							{
+								"patchline" : 								{
+									"destination" : [ "obj-1", 0 ],
+									"source" : [ "obj-7", 0 ]
+								}
+
+							}
+ ],
+						"originid" : "pat-2529"
+					}
+,
+					"patching_rect" : [ 156.0, 609.0, 65.0, 22.0 ],
+					"presentation_linecount" : 3,
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
+					"text" : "p Scripting"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"id" : "obj-37",
 					"maxclass" : "newobj",
@@ -24,13 +297,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 362.0, 276.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -179,8 +452,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 457.0, 665.0, 199.0, 33.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 457.0, 665.0, 199.0, 34.0 ],
 									"text" : "MIDI feedback delay. Non-note events are unaffected."
 								}
 
@@ -216,7 +488,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 757.0, 624.0, 160.0, 27.0 ],
-									"presentation_linecount" : 2,
 									"text" : "jmp.midi.transpose"
 								}
 
@@ -268,7 +539,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 578.0, 537.0, 113.0, 33.0 ],
+									"patching_rect" : [ 578.0, 537.0, 113.0, 34.0 ],
 									"text" : "Fluctuation standard deviation"
 								}
 
@@ -291,8 +562,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 467.0, 465.0, 199.0, 33.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 467.0, 465.0, 199.0, 34.0 ],
 									"text" : "Adds some random delay to midievent messages"
 								}
 
@@ -328,7 +598,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 935.0, 529.0, 110.0, 33.0 ],
+									"patching_rect" : [ 935.0, 529.0, 110.0, 34.0 ],
 									"text" : "Fluctuation standard deviation"
 								}
 
@@ -351,8 +621,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 793.0, 454.0, 199.0, 33.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 793.0, 454.0, 199.0, 34.0 ],
 									"text" : "Adds some random fluctuation to note event velocities."
 								}
 
@@ -365,7 +634,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 791.0, 417.0, 157.0, 27.0 ],
-									"presentation_linecount" : 2,
 									"text" : "jmp.midi.dynamics"
 								}
 
@@ -439,8 +707,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 462.0, 327.0, 199.0, 33.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 462.0, 327.0, 199.0, 34.0 ],
 									"text" : "Delay midievent messages, but let other data pass un-delayed."
 								}
 
@@ -464,8 +731,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 141.0, 486.0, 140.0, 33.0 ],
-									"presentation_linecount" : 2,
+									"patching_rect" : [ 141.0, 486.0, 140.0, 34.0 ],
 									"text" : "Extract the MIDI message number"
 								}
 
@@ -502,7 +768,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 55.0, 449.0, 154.0, 27.0 ],
-									"presentation_linecount" : 2,
 									"text" : "jmp.midi.message"
 								}
 
@@ -514,8 +779,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 153.0, 624.0, 199.0, 60.0 ],
-									"presentation_linecount" : 4,
+									"patching_rect" : [ 153.0, 624.0, 199.0, 62.0 ],
 									"text" : "Route midievent messages to different outlets depending on type. Like midiparse but preserves the midievent format."
 								}
 
@@ -550,8 +814,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 782.5, 825.0, 199.0, 33.0 ],
-									"presentation_linecount" : 3,
+									"patching_rect" : [ 782.5, 825.0, 199.0, 34.0 ],
 									"text" : "Strip unnecessary note-off messages and turn off stuck notes."
 								}
 
@@ -575,7 +838,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1175.0, 562.0, 53.0, 20.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Channel"
 								}
 
@@ -686,8 +948,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1222.0, 132.0, 244.0, 60.0 ],
-									"presentation_linecount" : 4,
+									"patching_rect" : [ 1222.0, 132.0, 244.0, 62.0 ],
 									"text" : "This generates a numeric ID that is unique to each note number on each channel. Its use is mostly to help in checking if a note is currently playing."
 								}
 
@@ -723,8 +984,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 1154.5, 664.0, 244.0, 47.0 ],
-									"presentation_linecount" : 4,
+									"patching_rect" : [ 1154.5, 664.0, 244.0, 48.0 ],
 									"text" : "This object formats a MIDI status byte from a message code and channel number (0-15)"
 								}
 
@@ -759,7 +1019,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1206.5, 722.0, 178.0, 20.0 ],
-									"presentation_linecount" : 2,
 									"text" : "Message number (1 = Note On)"
 								}
 
@@ -796,7 +1055,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 1154.5, 614.0, 169.0, 27.0 ],
-									"presentation_linecount" : 2,
 									"text" : "jmp.midi.statusbyte"
 								}
 
@@ -1023,7 +1281,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 178.0, 199.0, 336.0, 33.0 ],
+									"patching_rect" : [ 178.0, 199.0, 336.0, 34.0 ],
 									"text" : "IMPORTANT! The objects here operate on midievent messages as formatted by the midiparse object."
 								}
 
@@ -1047,7 +1305,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "MIDI"
 								}
 
@@ -1395,6 +1653,7 @@
 
 							}
  ],
+						"originid" : "pat-2249",
 						"boxgroups" : [ 							{
 								"boxes" : [ "obj-102", "obj-101", "obj-104", "obj-9", "obj-105" ]
 							}
@@ -1435,7 +1694,10 @@
 					}
 ,
 					"patching_rect" : [ 156.0, 562.0, 44.0, 22.0 ],
-					"presentation_linecount" : 2,
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p MIDI"
 				}
 
@@ -1451,13 +1713,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -1467,7 +1729,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "Control Flow"
 								}
 
@@ -1596,11 +1858,15 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-2429"
 					}
 ,
 					"patching_rect" : [ 158.0, 519.0, 94.0, 22.0 ],
-					"presentation_linecount" : 2,
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p \"Control Flow\""
 				}
 
@@ -1616,13 +1882,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -1632,7 +1898,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "Interpolation"
 								}
 
@@ -1706,7 +1972,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 385.0, 189.0, 33.0 ],
+									"patching_rect" : [ 45.0, 385.0, 189.0, 34.0 ],
 									"text" : "Interpolate values in a list using a cubic spline."
 								}
 
@@ -1869,11 +2135,15 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-2433"
 					}
 ,
 					"patching_rect" : [ 158.0, 473.0, 85.0, 22.0 ],
-					"presentation_linecount" : 4,
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p Interpolation"
 				}
 
@@ -1889,13 +2159,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -1965,7 +2235,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 38.0, 576.0, 189.0, 33.0 ],
+									"patching_rect" : [ 38.0, 576.0, 189.0, 34.0 ],
 									"text" : "Repeat the last value to lengthen a list."
 								}
 
@@ -2049,7 +2319,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 46.0, 384.0, 189.0, 33.0 ],
+									"patching_rect" : [ 46.0, 384.0, 189.0, 34.0 ],
 									"text" : "Repeat a list or value to make a longer list."
 								}
 
@@ -2146,7 +2416,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 47.0, 163.0, 189.0, 47.0 ],
+									"patching_rect" : [ 47.0, 163.0, 189.0, 48.0 ],
 									"text" : "Retrieve the element at the given index. Kind of like zl.lookup, but always outputs."
 								}
 
@@ -2170,7 +2440,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "Lists"
 								}
 
@@ -2269,10 +2539,15 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-2447"
 					}
 ,
 					"patching_rect" : [ 156.0, 431.0, 43.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p Lists"
 				}
 
@@ -2288,13 +2563,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -2329,7 +2604,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 514.0, 362.0, 189.0, 33.0 ],
+									"patching_rect" : [ 514.0, 362.0, 189.0, 34.0 ],
 									"text" : "The vector's angle, in radians. (Only works in 2 dimensions!)"
 								}
 
@@ -2498,7 +2773,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 267.0, 362.0, 189.0, 33.0 ],
+									"patching_rect" : [ 267.0, 362.0, 189.0, 34.0 ],
 									"text" : "Cross product. (Only works in 3 dimensions!)"
 								}
 
@@ -2870,7 +3145,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 116.0, 284.0, 33.0 ],
+									"patching_rect" : [ 45.0, 116.0, 284.0, 34.0 ],
 									"text" : "Vector math using regular Max lists! Essentially vexpr but better."
 								}
 
@@ -2882,7 +3157,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "Vectors"
 								}
 
@@ -3067,11 +3342,15 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-2459"
 					}
 ,
 					"patching_rect" : [ 157.0, 385.0, 59.0, 22.0 ],
-					"presentation_linecount" : 2,
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p Vectors"
 				}
 
@@ -3087,13 +3366,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -3216,7 +3495,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 166.0, 284.0, 87.0 ],
+									"patching_rect" : [ 45.0, 166.0, 284.0, 89.0 ],
 									"text" : "I use objects like send, receive, or value  alot. Use this abstraction to automatically change their appearance to achieve something akin to code highlighting. Unfortunately, this needs to be done manually. Double-click this patcher to colorize its parent."
 								}
 
@@ -3228,7 +3507,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "Syntax Highlighting"
 								}
 
@@ -3245,11 +3524,15 @@
 
 							}
  ],
-						"lines" : [  ]
+						"lines" : [  ],
+						"originid" : "pat-2485"
 					}
 ,
 					"patching_rect" : [ 158.0, 342.0, 130.0, 22.0 ],
-					"presentation_linecount" : 4,
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p \"Syntax Highlighting\""
 				}
 
@@ -3265,13 +3548,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -3354,7 +3637,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 151.0, 284.0, 60.0 ],
+									"patching_rect" : [ 45.0, 151.0, 284.0, 62.0 ],
 									"text" : "Max also doesn't have a simple way to delay anything. The pipe object won't do: it will only delay lists of fixed length and will unpack them in the process. Ugh. "
 								}
 
@@ -3366,7 +3649,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "Delay"
 								}
 
@@ -3419,10 +3702,15 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-2489"
 					}
 ,
 					"patching_rect" : [ 158.0, 303.0, 58.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p Delay"
 				}
 
@@ -3438,13 +3726,13 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 9,
+							"revision" : 0,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1560.0, 943.0 ],
+						"rect" : [ 0.0, 26.0, 1111.0, 943.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -3454,7 +3742,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 395.0, 553.0, 188.0, 33.0 ],
+									"patching_rect" : [ 395.0, 553.0, 188.0, 34.0 ],
 									"text" : "You can change the smoothness of the walk."
 								}
 
@@ -3480,7 +3768,7 @@
 									"numinlets" : 1,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 373.0, 594.0, 162.0, 49.0 ],
+									"patching_rect" : [ 373.0, 594.0, 162.0, 50.0 ],
 									"text" : "jmp.random.walk @mode normal @mean 0. @stddev 0.6 @smoothness 0.95"
 								}
 
@@ -3516,7 +3804,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 372.0, 151.0, 284.0, 74.0 ],
+									"patching_rect" : [ 372.0, 151.0, 284.0, 75.0 ],
 									"text" : "This abstraction will generate a smooth random walk if you provide it with a continuous stream of numbers. Usually, this will be a time value. This is great for adding natural-sounding instability to signals."
 								}
 
@@ -3637,7 +3925,8 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "int" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 437.0, 237.0, 24.0, 24.0 ]
+									"patching_rect" : [ 437.0, 237.0, 24.0, 24.0 ],
+									"svg" : ""
 								}
 
 							}
@@ -3710,7 +3999,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 148.0, 284.0, 47.0 ],
+									"patching_rect" : [ 45.0, 148.0, 284.0, 48.0 ],
 									"text" : "Max doesn't have very good noise generators. Use this external to generate random floating point numbers."
 								}
 
@@ -3733,7 +4022,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 45.0, 45.0, 280.0, 38.0 ],
+									"patching_rect" : [ 45.0, 45.0, 280.0, 39.0 ],
 									"text" : "Random Numbers"
 								}
 
@@ -3852,17 +4141,30 @@
 								}
 
 							}
- ]
+ ],
+						"originid" : "pat-2495"
 					}
 ,
 					"patching_rect" : [ 159.0, 266.0, 124.0, 22.0 ],
+					"saved_object_attributes" : 					{
+						"globalpatchername" : ""
+					}
+,
 					"text" : "p \"Random Numbers\""
 				}
 
 			}
  ],
 		"lines" : [  ],
+		"originid" : "pat-2247",
 		"dependency_cache" : [ 			{
+				"name" : "jmp.cascade~.maxpat",
+				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/patchers/msp",
+				"patcherrelativepath" : "../patchers/msp",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
 				"name" : "jmp.colorize.js",
 				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/media",
 				"patcherrelativepath" : "../media",
@@ -3880,6 +4182,13 @@
 				"name" : "jmp.delay.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/patchers",
 				"patcherrelativepath" : "../patchers",
+				"type" : "JSON",
+				"implicit" : 1
+			}
+, 			{
+				"name" : "jmp.filtergraph.gui.maxpat",
+				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/patchers/gui",
+				"patcherrelativepath" : "../patchers/gui",
 				"type" : "JSON",
 				"implicit" : 1
 			}
@@ -4017,8 +4326,15 @@
 				"implicit" : 1
 			}
 , 			{
-				"name" : "jmp.noise.mxo",
-				"type" : "iLaX"
+				"name" : "jmp.noise.mxe64",
+				"type" : "mx64"
+			}
+, 			{
+				"name" : "jmp.objectarray.maxpat",
+				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/patchers",
+				"patcherrelativepath" : "../patchers",
+				"type" : "JSON",
+				"implicit" : 1
 			}
 , 			{
 				"name" : "jmp.random.walk.maxpat",
