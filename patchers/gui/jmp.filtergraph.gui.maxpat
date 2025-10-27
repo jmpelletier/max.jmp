@@ -15,6 +15,40 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-14",
+					"maxclass" : "message",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 211.0, 371.0, 82.0, 22.0 ],
+					"text" : "ignoreclick $1"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-8",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 517.5, 473.0, 56.0, 22.0 ],
+					"restore" : 					{
+						"active" : [ 0 ],
+						"cutoff" : [ 0.0 ],
+						"filtergraph" : [ 1, 0, 9, 1, 0, 0, 1057.43505859375, 1.255558252334595, 0.70451408624649 ],
+						"gain" : [ 1.255558252334595 ],
+						"mode" : [ 0 ],
+						"res" : [ 0.70451408624649 ]
+					}
+,
+					"text" : "autopattr",
+					"varname" : "u293001594"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-41",
 					"linecount" : 2,
 					"maxclass" : "comment",
@@ -171,6 +205,7 @@
 					"grad1" : [ 0, 0.0, 0.0, 1.0 ],
 					"grad2" : [ 0, 0, 0, 0.55 ],
 					"id" : "obj-80",
+					"ignoreclick" : 0,
 					"maxclass" : "panel",
 					"mode" : 1,
 					"numinlets" : 1,
@@ -452,7 +487,7 @@
 
 							}
  ],
-						"originid" : "pat-1980"
+						"originid" : "pat-6979"
 					}
 ,
 					"patching_rect" : [ 88.0, 371.0, 115.0, 22.0 ],
@@ -742,6 +777,13 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-80", 0 ],
+					"source" : [ "obj-14", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-1", 0 ],
 					"source" : [ "obj-16", 0 ]
 				}
@@ -809,7 +851,17 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"midpoints" : [ 97.5, 362.0, 220.5, 362.0 ],
+					"order" : 0,
+					"source" : [ "obj-29", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-37", 0 ],
+					"order" : 1,
 					"source" : [ "obj-29", 0 ]
 				}
 
@@ -926,7 +978,7 @@
 
 			}
  ],
-		"originid" : "pat-1976",
+		"originid" : "pat-6975",
 		"dependency_cache" : [ 			{
 				"name" : "jmp.gate.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/patchers",

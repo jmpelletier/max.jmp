@@ -10,10 +10,23 @@
 		}
 ,
 		"classnamespace" : "box",
-		"rect" : [ 187.0, 147.0, 1310.0, 846.0 ],
+		"rect" : [ 187.0, 146.0, 1310.0, 846.0 ],
 		"openinpresentation" : 1,
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
+				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 4,
+					"outlettype" : [ "", "", "", "" ],
+					"patching_rect" : [ 778.0, 357.0, 56.0, 22.0 ],
+					"text" : "autopattr",
+					"varname" : "u138001750"
+				}
+
+			}
+, 			{
 				"box" : 				{
 					"comment" : "(signal) Filtered signal",
 					"id" : "obj-27",
@@ -333,7 +346,7 @@
 
 			}
  ],
-		"originid" : "pat-1907",
+		"originid" : "pat-3959",
 		"dependency_cache" : [ 			{
 				"name" : "jmp.filtergraph.gui.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/patchers/gui",
