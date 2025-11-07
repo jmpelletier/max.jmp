@@ -4,7 +4,7 @@
 		"appversion" : 		{
 			"major" : 9,
 			"minor" : 0,
-			"revision" : 0,
+			"revision" : 9,
 			"architecture" : "x64",
 			"modernui" : 1
 		}
@@ -14,13 +14,24 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-1",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 547.0, 186.0, 48.0, 22.0 ],
+					"text" : "pipe 30"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-48",
 					"linecount" : 2,
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 584.0, 546.0, 227.0, 34.0 ],
-					"presentation_linecount" : 2,
+					"patching_rect" : [ 584.0, 546.0, 227.0, 33.0 ],
 					"text" : "This patcher turns non-real-time mode on and off."
 				}
 
@@ -218,7 +229,7 @@
 						"appversion" : 						{
 							"major" : 9,
 							"minor" : 0,
-							"revision" : 0,
+							"revision" : 9,
 							"architecture" : "x64",
 							"modernui" : 1
 						}
@@ -499,15 +510,10 @@
 								}
 
 							}
- ],
-						"originid" : "pat-425"
+ ]
 					}
 ,
 					"patching_rect" : [ 211.0, 258.0, 163.0, 22.0 ],
-					"saved_object_attributes" : 					{
-						"globalpatchername" : ""
-					}
-,
 					"text" : "p find_RealTimeDriver_index"
 				}
 
@@ -533,8 +539,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 608.0, 92.0, 227.0, 48.0 ],
-					"presentation_linecount" : 3,
+					"patching_rect" : [ 608.0, 92.0, 227.0, 47.0 ],
 					"text" : "We  need to set overdrive and takeover to 1 for non-realtime audio to work properly."
 				}
 
@@ -593,7 +598,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 1,
 					"outlettype" : [ "int" ],
-					"patching_rect" : [ 547.0, 178.0, 126.0, 22.0 ],
+					"patching_rect" : [ 547.0, 229.0, 126.0, 22.0 ],
 					"text" : "jmp.adstatus takeover"
 				}
 
@@ -612,6 +617,13 @@
 			}
  ],
 		"lines" : [ 			{
+				"patchline" : 				{
+					"destination" : [ "obj-3", 0 ],
+					"source" : [ "obj-1", 0 ]
+				}
+
+			}
+, 			{
 				"patchline" : 				{
 					"destination" : [ "obj-17", 0 ],
 					"source" : [ "obj-14", 0 ]
@@ -738,15 +750,15 @@
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-2", 0 ],
-					"source" : [ "obj-44", 1 ]
+					"destination" : [ "obj-1", 0 ],
+					"source" : [ "obj-44", 0 ]
 				}
 
 			}
 , 			{
 				"patchline" : 				{
-					"destination" : [ "obj-3", 0 ],
-					"source" : [ "obj-44", 0 ]
+					"destination" : [ "obj-2", 0 ],
+					"source" : [ "obj-44", 1 ]
 				}
 
 			}
@@ -765,7 +777,6 @@
 
 			}
  ],
-		"originid" : "pat-411",
 		"dependency_cache" : [ 			{
 				"name" : "jmp.adstatus.maxpat",
 				"bootpath" : "~/Documents/Max 9/Packages/max.jmp/patchers",
