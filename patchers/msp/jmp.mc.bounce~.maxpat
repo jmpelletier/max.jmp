@@ -14,6 +14,30 @@
 		"gridsize" : [ 15.0, 15.0 ],
 		"boxes" : [ 			{
 				"box" : 				{
+					"id" : "obj-27",
+					"maxclass" : "newobj",
+					"numinlets" : 1,
+					"numoutlets" : 1,
+					"outlettype" : [ "" ],
+					"patching_rect" : [ 939.0, 355.0, 66.0, 22.0 ],
+					"text" : "prepend sr"
+				}
+
+			}
+, 			{
+				"box" : 				{
+					"id" : "obj-19",
+					"maxclass" : "newobj",
+					"numinlets" : 2,
+					"numoutlets" : 2,
+					"outlettype" : [ "", "int" ],
+					"patching_rect" : [ 891.0, 321.0, 67.0, 22.0 ],
+					"text" : "adstatus sr"
+				}
+
+			}
+, 			{
+				"box" : 				{
 					"id" : "obj-10",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
@@ -499,7 +523,7 @@
 				"box" : 				{
 					"comment" : "(symbol) Current read buffer name",
 					"id" : "obj-148",
-					"index" : 0,
+					"index" : 5,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -511,7 +535,7 @@
 				"box" : 				{
 					"comment" : "(symbol) Current write buffer name",
 					"id" : "obj-147",
-					"index" : 0,
+					"index" : 4,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -523,7 +547,7 @@
 				"box" : 				{
 					"comment" : "(int) Recording state",
 					"id" : "obj-146",
-					"index" : 0,
+					"index" : 3,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -546,7 +570,7 @@
 				"box" : 				{
 					"comment" : "(signal) Current recording time is ms",
 					"id" : "obj-133",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -558,7 +582,7 @@
 				"box" : 				{
 					"comment" : "(signal) Current recording",
 					"id" : "obj-132",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "outlet",
 					"numinlets" : 1,
 					"numoutlets" : 0,
@@ -582,11 +606,11 @@
 				"box" : 				{
 					"comment" : "(int) 1 to start 0 to stop",
 					"id" : "obj-122",
-					"index" : 0,
+					"index" : 2,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "int" ],
 					"patching_rect" : [ 525.0, 78.0, 30.0, 30.0 ]
 				}
 
@@ -595,11 +619,11 @@
 				"box" : 				{
 					"comment" : "(signal) Input",
 					"id" : "obj-121",
-					"index" : 0,
+					"index" : 1,
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "multichannelsignal" ],
 					"patching_rect" : [ 65.0, 28.0, 30.0, 30.0 ]
 				}
 
@@ -1288,7 +1312,7 @@
 					"numinlets" : 3,
 					"numoutlets" : 1,
 					"outlettype" : [ "signal" ],
-					"patching_rect" : [ 142.0, 562.0, 116.0, 22.0 ],
+					"patching_rect" : [ 142.0, 562.0, 191.0, 22.0 ],
 					"text" : "mc.record~ #2_0 #1"
 				}
 
@@ -1656,7 +1680,7 @@
 					"numinlets" : 5,
 					"numoutlets" : 4,
 					"outlettype" : [ "int", "", "", "int" ],
-					"patching_rect" : [ 661.0, 306.0, 69.0, 22.0 ],
+					"patching_rect" : [ 661.0, 320.0, 69.0, 22.0 ],
 					"text" : "counter 0 1"
 				}
 
@@ -1666,10 +1690,10 @@
 					"id" : "obj-53",
 					"maxclass" : "newobj",
 					"numinlets" : 1,
-					"numoutlets" : 2,
-					"outlettype" : [ "bang", "bang" ],
-					"patching_rect" : [ 588.0, 275.0, 92.0, 22.0 ],
-					"text" : "b"
+					"numoutlets" : 3,
+					"outlettype" : [ "bang", "bang", "bang" ],
+					"patching_rect" : [ 588.0, 275.0, 165.0, 22.0 ],
+					"text" : "b 3"
 				}
 
 			}
@@ -2057,7 +2081,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "multichannelsignal", "bang" ],
-					"patching_rect" : [ 383.0, 728.0, 110.0, 22.0 ],
+					"patching_rect" : [ 383.0, 728.0, 185.0, 22.0 ],
 					"text" : "mcs.play~ #2_1 #1"
 				}
 
@@ -2069,7 +2093,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 1001.5, 231.0, 129.0, 22.0 ],
+					"patching_rect" : [ 1001.5, 231.0, 205.0, 22.0 ],
 					"text" : "buffer~ #2_0 10000 #1"
 				}
 
@@ -2081,7 +2105,7 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "float", "bang" ],
-					"patching_rect" : [ 1172.0, 231.0, 129.0, 22.0 ],
+					"patching_rect" : [ 1257.0, 231.0, 205.0, 22.0 ],
 					"text" : "buffer~ #2_1 10000 #1"
 				}
 
@@ -2164,7 +2188,7 @@
 , 			{
 				"patchline" : 				{
 					"destination" : [ "obj-9", 0 ],
-					"midpoints" : [ 116.5, 197.821624755859375, 1181.5, 197.821624755859375 ],
+					"midpoints" : [ 116.5, 197.821624755859375, 1266.5, 197.821624755859375 ],
 					"order" : 0,
 					"source" : [ "obj-128", 0 ]
 				}
@@ -2209,9 +2233,32 @@
 			}
 , 			{
 				"patchline" : 				{
+					"destination" : [ "obj-27", 0 ],
+					"source" : [ "obj-19", 1 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
 					"destination" : [ "obj-91", 1 ],
 					"midpoints" : [ 392.5, 793.4180908203125, 513.55029296875, 793.4180908203125, 513.55029296875, 477.7376708984375, 98.5, 477.7376708984375 ],
 					"source" : [ "obj-20", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-14", 0 ],
+					"order" : 1,
+					"source" : [ "obj-27", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-9", 0 ],
+					"order" : 0,
+					"source" : [ "obj-27", 0 ]
 				}
 
 			}
@@ -2291,6 +2338,14 @@
 				"patchline" : 				{
 					"destination" : [ "obj-53", 0 ],
 					"source" : [ "obj-52", 0 ]
+				}
+
+			}
+, 			{
+				"patchline" : 				{
+					"destination" : [ "obj-19", 0 ],
+					"midpoints" : [ 743.5, 309.192047119140625, 900.5, 309.192047119140625 ],
+					"source" : [ "obj-53", 2 ]
 				}
 
 			}
@@ -2470,9 +2525,7 @@
 				}
 
 			}
- ],
-		"dependency_cache" : [  ],
-		"autosave" : 0
+ ]
 	}
 
 }
