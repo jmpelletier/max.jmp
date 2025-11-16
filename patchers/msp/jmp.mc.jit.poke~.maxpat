@@ -13,20 +13,64 @@
         "boxes": [
             {
                 "box": {
+                    "id": "obj-16",
+                    "maxclass": "newobj",
+                    "numinlets": 1,
+                    "numoutlets": 1,
+                    "outlettype": [ "" ],
+                    "patching_rect": [ 138.0, 177.0, 75.0, 22.0 ],
+                    "text": "prepend dim"
+                }
+            },
+            {
+                "box": {
+                    "id": "obj-17",
+                    "maxclass": "newobj",
+                    "numinlets": 2,
+                    "numoutlets": 2,
+                    "outlettype": [ "", "" ],
+                    "patching_rect": [ 138.0, 147.0, 108.0, 22.0 ],
+                    "text": "route length"
+                }
+            },
+            {
+                "box": {
+                    "id": "obj-15",
+                    "maxclass": "newobj",
+                    "numinlets": 1,
+                    "numoutlets": 1,
+                    "outlettype": [ "" ],
+                    "patching_rect": [ 775.0, 213.0, 75.0, 22.0 ],
+                    "text": "prepend dim"
+                }
+            },
+            {
+                "box": {
+                    "id": "obj-1",
+                    "maxclass": "newobj",
+                    "numinlets": 2,
+                    "numoutlets": 2,
+                    "outlettype": [ "", "" ],
+                    "patching_rect": [ 775.0, 183.0, 72.0, 22.0 ],
+                    "text": "route length"
+                }
+            },
+            {
+                "box": {
                     "id": "obj-14",
                     "linecount": 6,
                     "maxclass": "comment",
                     "numinlets": 1,
                     "numoutlets": 0,
                     "patching_rect": [ 468.0, 301.0, 246.0, 89.0 ],
-                    "text": "This works mostly like jit.poke~ buf uses mc.poly~ to write individual channels to different matrix planes.\n\nUnlike jit.poke~, the jitter is output when you send a bang."
+                    "text": "This works mostly like jit.poke~ buf uses mc.poly~ to write individual channels to different matrix planes.\n\nUnlike jit.poke~, the Jitter matrix is output when you send a bang."
                 }
             },
             {
                 "box": {
                     "comment": "",
                     "id": "obj-13",
-                    "index": 0,
+                    "index": 1,
                     "maxclass": "outlet",
                     "numinlets": 1,
                     "numoutlets": 0,
@@ -94,8 +138,8 @@
                     "numinlets": 1,
                     "numoutlets": 2,
                     "outlettype": [ "", "" ],
-                    "patching_rect": [ 460.0, 141.0, 236.0, 22.0 ],
-                    "text": "patcherargs 2 #0jmp.mc.jit.poke-buf 44100"
+                    "patching_rect": [ 460.0, 141.0, 334.0, 22.0 ],
+                    "text": "patcherargs 2 #0jmp.mc.jit.poke-buf 44100 @length 44100"
                 }
             },
             {
@@ -113,11 +157,11 @@
                 "box": {
                     "comment": "(signal) Sample index",
                     "id": "obj-5",
-                    "index": 0,
+                    "index": 2,
                     "maxclass": "inlet",
                     "numinlets": 0,
                     "numoutlets": 1,
-                    "outlettype": [ "" ],
+                    "outlettype": [ "signal" ],
                     "patching_rect": [ 281.0, 166.0, 30.0, 30.0 ]
                 }
             },
@@ -135,16 +179,22 @@
                 "box": {
                     "comment": "(mc) Input",
                     "id": "obj-2",
-                    "index": 0,
+                    "index": 1,
                     "maxclass": "inlet",
                     "numinlets": 0,
                     "numoutlets": 1,
-                    "outlettype": [ "" ],
+                    "outlettype": [ "multichannelsignal" ],
                     "patching_rect": [ 138.0, 92.0, 30.0, 30.0 ]
                 }
             }
         ],
         "lines": [
+            {
+                "patchline": {
+                    "destination": [ "obj-15", 0 ],
+                    "source": [ "obj-1", 0 ]
+                }
+            },
             {
                 "patchline": {
                     "destination": [ "obj-3", 0 ],
@@ -155,6 +205,31 @@
             {
                 "patchline": {
                     "destination": [ "obj-3", 0 ],
+                    "midpoints": [ 784.5, 248.0, 147.5, 248.0 ],
+                    "source": [ "obj-15", 0 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-3", 0 ],
+                    "source": [ "obj-16", 0 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-16", 0 ],
+                    "source": [ "obj-17", 0 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-3", 0 ],
+                    "source": [ "obj-17", 1 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-17", 0 ],
                     "source": [ "obj-2", 0 ]
                 }
             },
@@ -168,6 +243,12 @@
                 "patchline": {
                     "destination": [ "obj-3", 1 ],
                     "source": [ "obj-5", 0 ]
+                }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-1", 0 ],
+                    "source": [ "obj-6", 1 ]
                 }
             },
             {
@@ -197,8 +278,14 @@
                     "midpoints": [ 531.5, 234.0, 147.5, 234.0 ],
                     "source": [ "obj-8", 0 ]
                 }
+            },
+            {
+                "patchline": {
+                    "destination": [ "obj-3", 0 ],
+                    "midpoints": [ 592.5, 235.0, 147.5, 235.0 ],
+                    "source": [ "obj-9", 0 ]
+                }
             }
-        ],
-        "autosave": 0
+        ]
     }
 }
