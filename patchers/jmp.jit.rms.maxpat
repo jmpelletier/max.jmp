@@ -397,11 +397,11 @@
                 "box": {
                     "id": "obj-3",
                     "maxclass": "newobj",
-                    "numinlets": 2,
-                    "numoutlets": 2,
-                    "outlettype": [ "", "" ],
-                    "patching_rect": [ 112.0, 203.0, 59.0, 22.0 ],
-                    "text": "route dim"
+                    "numinlets": 3,
+                    "numoutlets": 3,
+                    "outlettype": [ "", "", "" ],
+                    "patching_rect": [ 112.0, 203.0, 89.0, 22.0 ],
+                    "text": "route dim done"
                 }
             },
             {
@@ -484,7 +484,7 @@
             {
                 "patchline": {
                     "destination": [ "obj-20", 0 ],
-                    "source": [ "obj-3", 1 ]
+                    "source": [ "obj-3", 2 ]
                 }
             },
             {
