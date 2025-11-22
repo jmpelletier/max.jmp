@@ -152,7 +152,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 632.5, 128.0, 227.0, 33.0 ],
-					"presentation_linecount" : 2,
 					"text" : "Not that for char type the max value is 255 and for long it is 65,535."
 				}
 
@@ -165,7 +164,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 632.0, 53.5, 150.0, 60.0 ],
-					"presentation_linecount" : 4,
 					"text" : "Like jit.gencoords, but coordinates are always integer values 0, 1, 2, 3, ...\nEven with char output."
 				}
 
@@ -202,7 +200,7 @@
 					"maxclass" : "inlet",
 					"numinlets" : 0,
 					"numoutlets" : 1,
-					"outlettype" : [ "" ],
+					"outlettype" : [ "bang" ],
 					"patching_rect" : [ 63.0, 27.0, 30.0, 30.0 ]
 				}
 
@@ -227,7 +225,6 @@
 					"numinlets" : 1,
 					"numoutlets" : 0,
 					"patching_rect" : [ 632.0, 169.0, 150.0, 47.0 ],
-					"presentation_linecount" : 3,
 					"text" : "Unlike jit.gencoords, we infer the plane count from the dimensions."
 				}
 
@@ -299,8 +296,8 @@
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "" ],
-					"patching_rect" : [ 434.0, 50.0, 158.0, 22.0 ],
-					"text" : "patcherargs float64 256 256"
+					"patching_rect" : [ 434.0, 50.0, 135.0, 22.0 ],
+					"text" : "patcherargs float64 256"
 				}
 
 			}
