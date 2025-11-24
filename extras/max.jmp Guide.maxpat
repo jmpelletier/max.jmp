@@ -30,7 +30,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 134.0, 185.0, 1355.0, 1047.0 ],
+						"rect" : [ 0.0, 26.0, 1355.0, 1047.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -191,13 +191,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 794.0, 217.0, 247.0, 22.0 ],
-									"saved_attribute_attributes" : 									{
-										"color" : 										{
-											"expression" : "themecolor.lesson_text_hilite"
-										}
-
-									}
-,
 									"text" : "jmp.jit.pack @alpha 0.5"
 								}
 
@@ -288,7 +281,6 @@
 									"numinlets" : 1,
 									"numoutlets" : 0,
 									"patching_rect" : [ 794.0, 88.0, 330.0, 33.0 ],
-									"presentation_linecount" : 3,
 									"text" : "Pack 3 single-plane matrices into a 4-plane matrix. The first plane is filled with the value set in the \"alpha\" attribute."
 								}
 
@@ -353,13 +345,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 511.0, 555.0, 195.0, 22.0 ],
-									"saved_attribute_attributes" : 									{
-										"color" : 										{
-											"expression" : "themecolor.lesson_text_hilite"
-										}
-
-									}
-,
 									"text" : "jmp.jit.planes2rows @planecount 4"
 								}
 
@@ -400,13 +385,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 370.0, 555.0, 111.0, 22.0 ],
-									"saved_attribute_attributes" : 									{
-										"color" : 										{
-											"expression" : "themecolor.lesson_text_hilite"
-										}
-
-									}
-,
 									"text" : "jmp.jit.planes2rows"
 								}
 
@@ -558,13 +536,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 380.0, 190.0, 149.0, 22.0 ],
-									"saved_attribute_attributes" : 									{
-										"color" : 										{
-											"expression" : "themecolor.lesson_text_hilite"
-										}
-
-									}
-,
 									"text" : "jmp.jit.gencoords long 100"
 								}
 
@@ -672,13 +643,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 52.0, 569.0, 79.0, 22.0 ],
-									"saved_attribute_attributes" : 									{
-										"color" : 										{
-											"expression" : "themecolor.lesson_text_hilite"
-										}
-
-									}
-,
 									"text" : "jmp.jit.accum"
 								}
 
@@ -707,13 +671,6 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "jit_matrix" ],
 									"patching_rect" : [ 52.0, 290.0, 145.0, 22.0 ],
-									"saved_attribute_attributes" : 									{
-										"color" : 										{
-											"expression" : "themecolor.lesson_text_hilite"
-										}
-
-									}
-,
 									"text" : "jmp.jit.changetype float32"
 								}
 
@@ -4778,7 +4735,7 @@
 						}
 ,
 						"classnamespace" : "box",
-						"rect" : [ 0.0, 26.0, 1355.0, 1047.0 ],
+						"rect" : [ 134.0, 185.0, 1355.0, 1047.0 ],
 						"gridsize" : [ 15.0, 15.0 ],
 						"showontab" : 2,
 						"boxes" : [ 							{
@@ -4789,7 +4746,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 163.0, 624.0, 50.0, 22.0 ]
+									"patching_rect" : [ 160.0, 657.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -4800,7 +4757,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 38.0, 701.0, 148.0, 22.0 ],
+									"patching_rect" : [ 35.0, 734.0, 148.0, 22.0 ],
 									"text" : "4 5 6 6 6 6 6 6 6 6"
 								}
 
@@ -4813,7 +4770,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 38.0, 624.0, 50.0, 22.0 ]
+									"patching_rect" : [ 35.0, 657.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -4824,7 +4781,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 98.0, 624.0, 35.0, 22.0 ],
+									"patching_rect" : [ 95.0, 657.0, 35.0, 22.0 ],
 									"text" : "4 5 6"
 								}
 
@@ -4836,7 +4793,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 38.0, 657.0, 144.0, 22.0 ],
+									"patching_rect" : [ 35.0, 690.0, 144.0, 22.0 ],
 									"text" : "jmp.list.pad 5"
 								}
 
@@ -4848,7 +4805,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 38.0, 576.0, 189.0, 33.0 ],
+									"patching_rect" : [ 35.0, 609.0, 189.0, 33.0 ],
 									"text" : "Repeat the last value to lengthen a list."
 								}
 
@@ -4860,7 +4817,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 39.0, 543.0, 189.0, 27.0 ],
+									"patching_rect" : [ 36.0, 576.0, 189.0, 27.0 ],
 									"text" : "jmp.list.pad"
 								}
 
@@ -4873,7 +4830,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 171.0, 432.0, 50.0, 22.0 ]
+									"patching_rect" : [ 161.0, 433.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -4884,7 +4841,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 46.0, 510.0, 148.0, 22.0 ],
+									"patching_rect" : [ 36.0, 511.0, 148.0, 22.0 ],
 									"text" : "4 5 6 4 5 6 4 5 6 4"
 								}
 
@@ -4897,7 +4854,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 46.0, 432.0, 50.0, 22.0 ]
+									"patching_rect" : [ 36.0, 433.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -4908,7 +4865,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 106.0, 432.0, 35.0, 22.0 ],
+									"patching_rect" : [ 96.0, 433.0, 35.0, 22.0 ],
 									"text" : "4 5 6"
 								}
 
@@ -4920,7 +4877,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 46.0, 465.0, 144.0, 22.0 ],
+									"patching_rect" : [ 36.0, 466.0, 144.0, 22.0 ],
 									"text" : "jmp.list.broadcast 5"
 								}
 
@@ -4932,7 +4889,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 46.0, 384.0, 189.0, 33.0 ],
+									"patching_rect" : [ 36.0, 385.0, 189.0, 33.0 ],
 									"text" : "Repeat a list or value to make a longer list."
 								}
 
@@ -4944,7 +4901,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 47.0, 351.0, 189.0, 27.0 ],
+									"patching_rect" : [ 37.0, 352.0, 189.0, 27.0 ],
 									"text" : "jmp.list.broadcast"
 								}
 
@@ -4958,7 +4915,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 109.0, 210.0, 50.0, 22.0 ]
+									"patching_rect" : [ 107.0, 217.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -4970,7 +4927,7 @@
 									"numoutlets" : 2,
 									"outlettype" : [ "", "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 47.0, 210.0, 50.0, 22.0 ]
+									"patching_rect" : [ 45.0, 217.0, 50.0, 22.0 ]
 								}
 
 							}
@@ -4982,7 +4939,7 @@
 									"numoutlets" : 1,
 									"outlettype" : [ "bang" ],
 									"parameter_enable" : 0,
-									"patching_rect" : [ 171.0, 286.0, 24.0, 24.0 ]
+									"patching_rect" : [ 169.0, 293.0, 24.0, 24.0 ]
 								}
 
 							}
@@ -4993,8 +4950,8 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 47.0, 287.0, 112.0, 22.0 ],
-									"text" : "20"
+									"patching_rect" : [ 45.0, 294.0, 112.0, 22.0 ],
+									"text" : "11"
 								}
 
 							}
@@ -5005,7 +4962,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 176.0, 210.0, 55.0, 22.0 ],
+									"patching_rect" : [ 174.0, 217.0, 55.0, 22.0 ],
 									"text" : "20 30 40"
 								}
 
@@ -5017,7 +4974,7 @@
 									"numinlets" : 2,
 									"numoutlets" : 1,
 									"outlettype" : [ "" ],
-									"patching_rect" : [ 47.0, 243.0, 148.0, 22.0 ],
+									"patching_rect" : [ 45.0, 250.0, 148.0, 22.0 ],
 									"text" : "jmp.list.get 10 11 12 13 14"
 								}
 
@@ -5025,12 +4982,12 @@
 , 							{
 								"box" : 								{
 									"id" : "obj-8",
-									"linecount" : 3,
+									"linecount" : 5,
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 47.0, 163.0, 189.0, 47.0 ],
-									"text" : "Retrieve the element at the given index. Kind of like zl.lookup, but always outputs."
+									"patching_rect" : [ 45.0, 135.0, 189.0, 74.0 ],
+									"text" : "Retrieve the element at the given index. Kind of like zl.lookup, but always outputs, even if index is out of bounds, in which case the first or last value is returned."
 								}
 
 							}
@@ -5041,7 +4998,7 @@
 									"maxclass" : "comment",
 									"numinlets" : 1,
 									"numoutlets" : 0,
-									"patching_rect" : [ 48.0, 130.0, 189.0, 27.0 ],
+									"patching_rect" : [ 46.0, 102.0, 189.0, 27.0 ],
 									"text" : "jmp.list.get"
 								}
 
@@ -6745,16 +6702,6 @@
 		"lines" : [  ],
 		"parameters" : 		{
 			"obj-2::obj-5::obj-28" : [ "mc.live.gain~", "mc.live.gain~", 0 ],
-			"parameterbanks" : 			{
-				"0" : 				{
-					"index" : 0,
-					"name" : "",
-					"parameters" : [ "-", "-", "-", "-", "-", "-", "-", "-" ],
-					"buttons" : [ "-", "-", "-", "-", "-", "-", "-", "-" ]
-				}
-
-			}
-,
 			"inherited_shortname" : 1
 		}
 ,
