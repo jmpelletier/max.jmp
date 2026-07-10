@@ -194,7 +194,7 @@ namespace jmpmax {
 	template <typename T>
 	inline void set_bang(bang_callback<T> callback)
 	{
-		class_addmethod(class_ptr, (method)callback, "bang", A_CANT, 0);
+		class_addmethod(nullptr, (method)callback, "bang", A_CANT, 0);
 	}
 
 	template <typename T, typename U>
