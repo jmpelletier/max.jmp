@@ -1,1 +1,6 @@
+# Externals directory -- Those should be compiled locally
 externals
+
+
+# macOS files
+.DS_Store
