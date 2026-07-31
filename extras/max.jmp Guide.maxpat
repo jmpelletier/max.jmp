@@ -1043,9 +1043,150 @@
                             "modernui": 1
                         },
                         "classnamespace": "box",
-                        "rect": [ 0.0, 26.0, 1355.0, 1047.0 ],
+                        "rect": [ 134.0, 185.0, 1355.0, 1047.0 ],
                         "showontab": 2,
                         "boxes": [
+                            {
+                                "box": {
+                                    "id": "obj-67",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [ 1063.0, 692.0, 115.0, 20.0 ],
+                                    "presentation_linecount": 2,
+                                    "text": "Reload original data"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-66",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [ 969.0, 643.5, 111.0, 20.0 ],
+                                    "text": "Done"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-65",
+                                    "maxclass": "button",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "bang" ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [ 941.0, 641.5, 24.0, 24.0 ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-64",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [ 980.0, 577.0, 111.0, 20.0 ],
+                                    "text": "Do it!"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-63",
+                                    "maxclass": "button",
+                                    "numinlets": 1,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "bang" ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [ 941.0, 575.0, 24.0, 24.0 ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-61",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [ 1170.0, 577.0, 111.0, 20.0 ],
+                                    "text": "Milliseconds to add"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "format": 6,
+                                    "id": "obj-60",
+                                    "maxclass": "flonum",
+                                    "minimum": 0.0,
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [ "", "bang" ],
+                                    "parameter_enable": 0,
+                                    "patching_rect": [ 1111.0, 576.0, 50.0, 22.0 ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-49",
+                                    "maxclass": "newobj",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "" ],
+                                    "patching_rect": [ 941.0, 607.0, 189.0, 22.0 ],
+                                    "text": "jmp.pad.buffer~ padded-buf 1000."
+                                }
+                            },
+                            {
+                                "box": {
+                                    "buffername": "padded-buf",
+                                    "id": "obj-55",
+                                    "maxclass": "waveform~",
+                                    "numinlets": 5,
+                                    "numoutlets": 6,
+                                    "outlettype": [ "float", "float", "float", "float", "list", "" ],
+                                    "patching_rect": [ 934.0, 765.0, 256.0, 64.0 ]
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-51",
+                                    "maxclass": "message",
+                                    "numinlets": 2,
+                                    "numoutlets": 1,
+                                    "outlettype": [ "" ],
+                                    "patching_rect": [ 934.0, 691.0, 118.0, 22.0 ],
+                                    "text": "replace isthatyou.aiff"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-47",
+                                    "maxclass": "newobj",
+                                    "numinlets": 1,
+                                    "numoutlets": 2,
+                                    "outlettype": [ "float", "bang" ],
+                                    "patching_rect": [ 934.0, 729.0, 181.0, 22.0 ],
+                                    "text": "buffer~ padded-buf isthatyou.aiff"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "id": "obj-44",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [ 941.0, 526.0, 292.0, 20.0 ],
+                                    "text": "Add silence at the end of a buffer~"
+                                }
+                            },
+                            {
+                                "box": {
+                                    "fontsize": 18.0,
+                                    "id": "obj-14",
+                                    "maxclass": "comment",
+                                    "numinlets": 1,
+                                    "numoutlets": 0,
+                                    "patching_rect": [ 941.0, 490.0, 189.0, 27.0 ],
+                                    "text": "jmp.pad.buffer~"
+                                }
+                            },
                             {
                                 "box": {
                                     "id": "obj-58",
@@ -2580,6 +2721,18 @@
                             },
                             {
                                 "patchline": {
+                                    "destination": [ "obj-65", 0 ],
+                                    "source": [ "obj-49", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-47", 0 ],
+                                    "source": [ "obj-51", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
                                     "destination": [ "obj-18", 0 ],
                                     "source": [ "obj-53", 0 ]
                                 }
@@ -2606,6 +2759,18 @@
                                 "patchline": {
                                     "destination": [ "obj-8", 0 ],
                                     "source": [ "obj-6", 1 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-49", 1 ],
+                                    "source": [ "obj-60", 0 ]
+                                }
+                            },
+                            {
+                                "patchline": {
+                                    "destination": [ "obj-49", 0 ],
+                                    "source": [ "obj-63", 0 ]
                                 }
                             }
                         ]
@@ -5658,7 +5823,7 @@
                             "modernui": 1
                         },
                         "classnamespace": "box",
-                        "rect": [ 134.0, 185.0, 1355.0, 1047.0 ],
+                        "rect": [ 0.0, 26.0, 1355.0, 1047.0 ],
                         "showontab": 2,
                         "boxes": [
                             {
@@ -5768,7 +5933,6 @@
                                     "numinlets": 1,
                                     "numoutlets": 0,
                                     "patching_rect": [ 69.0, 456.0, 284.0, 33.0 ],
-                                    "presentation_linecount": 2,
                                     "text": "Use this to kind of realistically simulate network delay."
                                 }
                             },
@@ -5780,7 +5944,6 @@
                                     "numoutlets": 1,
                                     "outlettype": [ "" ],
                                     "patching_rect": [ 242.0, 756.0, 101.0, 22.0 ],
-                                    "presentation_linecount": 2,
                                     "text": "spikerange $1 $2"
                                 }
                             },
@@ -5843,7 +6006,6 @@
                                     "numoutlets": 1,
                                     "outlettype": [ "" ],
                                     "patching_rect": [ 314.0, 658.0, 92.0, 22.0 ],
-                                    "presentation_linecount": 3,
                                     "text": "spikechance $1"
                                 }
                             },
