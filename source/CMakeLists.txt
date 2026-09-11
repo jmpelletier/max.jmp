@@ -8,6 +8,15 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(max-sdk-base)
 
+# Default output for built externals. Users can still override this from the CMake cache/UI.
+set(C74_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/../externals"
+    CACHE PATH "Directory to copy built Max externals into")
+
+if (APPLE)
+    option(MAX_SDK_CODESIGN_EXTERNS "Sign macOS externals during build" OFF)
+    set(MAX_SDK_CODESIGN_IDENTITY "" CACHE STRING "Apple Developer code-signing identity (for example: Apple Development: Jane Doe (ABC123XYZ))")
+endif()
+
 project(jmpmax)
 
 

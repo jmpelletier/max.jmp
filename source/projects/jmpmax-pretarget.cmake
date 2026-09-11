@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.19)
 
 string(REGEX REPLACE "(.*)/" "" THIS_FOLDER_NAME "${CMAKE_CURRENT_SOURCE_DIR}")
+string(REPLACE "~" "_tilde" THIS_FOLDER_NAME "${THIS_FOLDER_NAME}")
 project(${THIS_FOLDER_NAME})
 
 message("Generating ${THIS_FOLDER_NAME}")
 
-include("${MAX_SDK_PATH}/source/max-sdk-base/script/max-pretarget.cmake")
+include("${MAX_SDK_PATH}/script/max-pretarget.cmake")
 
 if (APPLE)
 	set(CMAKE_OSX_DEPLOYMENT_TARGET "10.12" CACHE STRING "Minimum OS X deployment version" FORCE)

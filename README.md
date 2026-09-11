@@ -15,7 +15,7 @@ git clone https://github.com/jmpelletier/MaxJmp.git max.jmp
 ```
 
 ## Building the externals
-This package mostly only contains abstractions, but there are also a few (currently just one) externals for things that are difficult to do purely in Max. Binaries for Windows and macOS are provided, but you can build them yourself if you so wish. To build these externals yourself, you will need to install [CMake](https://cmake.org). On macOS, the easiest way to do so, is through [Homebrew](https://brew.sh).
+This package mostly only contains abstractions, but there are also a few externals for things that are difficult to do purely in Max. Binaries for Windows and macOS are provided, but you can build them yourself if you so wish. To build these externals yourself, you will need to install [CMake](https://cmake.org). On macOS, the easiest way to do so, is through [Homebrew](https://brew.sh).
 
 ```bash
 brew install cmake
@@ -68,6 +68,27 @@ Press 'e' to exit to main screen again and the press 'g' to generate the project
 ```bash
 make
 ```
+
+### Code signing on macOS
+If you want to sign the built externals with your Apple Developer identity, enable code signing in CMake and provide your signing identity:
+
+```bash
+ccmake ../
+```
+
+Set `MAX_SDK_CODESIGN_EXTERNS` to `ON` and set `MAX_SDK_CODESIGN_IDENTITY` to your Apple Developer identity, for example:
+
+```text
+Apple Development: Jane Doe (ABC123XYZ)
+```
+
+To see the available identities installed on your Mac, run:
+
+```bash
+security find-identity -v -p codesigning
+```
+
+If you leave code signing disabled, CMake will use the default ad-hoc identity (`-`) for local builds, which is fine for development but not for distribution.
 
 The externals binary should be copied in the 'externals' folder. If you wish to modify the location of the Max SDK installation, or where the binaries are copied, you can do so when you invoke ccmake:
 
