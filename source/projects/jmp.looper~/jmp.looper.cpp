@@ -16,6 +16,9 @@
     The "duration" argument specifies the length of the loop in milliseconds. This argument has precedence over crossfade.
     If duration + crossfade exceeds the length of the buffer, the crossfade will be clamped to fit within the buffer.
     If duration is longer than the length of the buffer, it will be clamped to the buffer's length.
+
+    Copyright 2026, Jean-Marc Pelletier
+    jmp@jmpelletier.com
 */
 
 #include "ext.h"
@@ -32,7 +35,7 @@
 typedef struct _looper {
 	t_pxobject		l_obj;
 	t_buffer_ref*	l_buffer_reference;
-	long			l_chan;
+	long			l_output_channel_count;
 	double			l_crossfade_ms;		// crossfade time, in ms (attribute)
 	double			l_duration_ms;		// loop duration, in ms (attribute); <= 0 means "unspecified"
 } t_looper;
@@ -44,33 +47,60 @@ void  looper_set(t_looper* x, t_symbol* s);
 void* looper_new(t_symbol* s, long argc, t_atom* argv);
 void  looper_free(t_looper* x);
 t_max_err looper_notify(t_looper* x, t_symbol* s, t_symbol* msg, void* sender, void* data);
-void  looper_in1(t_looper* x, long n);
 void  looper_assist(t_looper* x, void* b, long m, long a, char* s);
 void  looper_dblclick(t_looper* x);
+t_max_err looper_attr_set_crossfade(t_looper* x, void* attr, long argc, t_atom* argv);
+t_max_err looper_attr_set_duration(t_looper* x, void* attr, long argc, t_atom* argv);
 
 static t_class* looper_class;
 
 
+#ifdef __cplusplus
+extern "C"
+#endif
 C74_EXPORT void ext_main(void* r)
 {
-	t_class* c = class_new("looper~", (method)looper_new, (method)looper_free, sizeof(t_looper), 0L, A_GIMME, 0);
+	t_class* c = class_new("jmp.looper~", (method)looper_new, (method)looper_free, sizeof(t_looper), 0L, A_GIMME, 0);
 
 	class_addmethod(c, (method)looper_dsp64,	 "dsp64",	 A_CANT, 0);
 	class_addmethod(c, (method)looper_set,		 "set",		 A_SYM, 0);
-	class_addmethod(c, (method)looper_in1,		 "in1",		 A_LONG, 0);
 	class_addmethod(c, (method)looper_assist,	 "assist",	 A_CANT, 0);
 	class_addmethod(c, (method)looper_dblclick, "dblclick", A_CANT, 0);
 	class_addmethod(c, (method)looper_notify,	 "notify",	 A_CANT, 0);
 
 	CLASS_ATTR_DOUBLE(c, "crossfade", 0, t_looper, l_crossfade_ms);
+    CLASS_ATTR_BASIC(c, "crossfade", 0);
 	CLASS_ATTR_LABEL(c, "crossfade", 0, "Crossfade Time (ms)");
+    CLASS_ATTR_ACCESSORS(c, "crossfade", 0, looper_attr_set_crossfade);
 
 	CLASS_ATTR_DOUBLE(c, "duration", 0, t_looper, l_duration_ms);
+    CLASS_ATTR_BASIC(c, "duration", 0);
 	CLASS_ATTR_LABEL(c, "duration", 0, "Loop Duration (ms)");
+    CLASS_ATTR_ACCESSORS(c, "duration", 0, looper_attr_set_duration);
 
 	class_dspinit(c);
 	class_register(CLASS_BOX, c);
 	looper_class = c;
+}
+
+t_max_err looper_attr_set_crossfade(t_looper* x, void* attr, long argc, t_atom* argv)
+{
+    x->l_crossfade_ms = atom_getfloat(argv);
+    if (x->l_crossfade_ms < 0.0) {
+        x->l_crossfade_ms = 0.0;
+    }
+
+    return 0;
+}
+
+t_max_err looper_attr_set_duration(t_looper* x, void* attr, long argc, t_atom* argv)
+{
+    x->l_duration_ms = atom_getfloat(argv);
+    if (x->l_duration_ms < 0.0) {
+        x->l_duration_ms = 0.0;
+    }
+
+    return 0;
 }
 
 
@@ -108,17 +138,17 @@ static inline double looper_get_sample(t_float* tab, long frame, long frames, lo
 // sample position; out-of-range reads are clamped at the buffer edges.
 static inline double looper_interp_read(t_float* tab, double findex, long frames, long nc, long chan)
 {
-	long index1 = (long)floor(findex);
-	double frac = findex - index1;
+	long int_index = (long)floor(findex);
+	double frac = findex - int_index;
 
 	if (frac == 0.0) {
-		return looper_get_sample(tab, index1, frames, nc, chan);
+		return looper_get_sample(tab, int_index, frames, nc, chan);
 	}
 	else {
-		double y0 = looper_get_sample(tab, index1 - 1, frames, nc, chan);
-		double y1 = looper_get_sample(tab, index1,     frames, nc, chan);
-		double y2 = looper_get_sample(tab, index1 + 1, frames, nc, chan);
-		double y3 = looper_get_sample(tab, index1 + 2, frames, nc, chan);
+		double y0 = looper_get_sample(tab, int_index - 1, frames, nc, chan);
+		double y1 = looper_get_sample(tab, int_index,     frames, nc, chan);
+		double y2 = looper_get_sample(tab, int_index + 1, frames, nc, chan);
+		double y3 = looper_get_sample(tab, int_index + 2, frames, nc, chan);
 
 		return looper_cubic_interp(y0, y1, y2, y3, frac);
 	}
@@ -127,96 +157,119 @@ static inline double looper_interp_read(t_float* tab, double findex, long frames
 
 void looper_perform64(t_looper* x, t_object* dsp64, double** ins, long numins, double** outs, long numouts, long sampleframes, long flags, void* userparam)
 {
-	t_double* in = ins[0];
-	t_double* out = outs[0];
-	int n = sampleframes;
-	t_float* tab;
+	t_float* buffer_data;
 	double time_ms;
-	double findex;
-	double msr;					// milliseconds -> samples conversion factor
+	double buffer_samplerate_ms;
 	double crossfade_samps;		// crossfade length, in samples
-	double crossfade_offset;		// end of the playable (non-tail) region, in samples
-	long index1, chan, frames, nc;
+	double crossfade_offset_samps;		// end of the playable (non-tail) region, in samples
+	long buffer_frame_count, buffer_channel_count;
+	t_buffer_obj* buffer = NULL;
 
-	t_buffer_obj* buffer = buffer_ref_getobject(x->l_buffer_reference);
-
-	tab = buffer_locksamples(buffer);
-	if (!tab) {
+	if (!x || !x->l_buffer_reference) {
 		goto zero;
 	}
 
-	frames = buffer_getframecount(buffer);
-	nc = buffer_getchannelcount(buffer);
-	chan = MIN(x->l_chan, nc);
+	buffer = buffer_ref_getobject(x->l_buffer_reference);
+	if (!buffer) {
+		goto zero;
+	}
+
+    // Lock the buffer and get a pointer to its samples
+	buffer_data = buffer_locksamples(buffer);
+	if (!buffer_data) {
+		goto zero;
+	}
+
+	buffer_frame_count = buffer_getframecount(buffer);
+	buffer_channel_count = buffer_getchannelcount(buffer);
 
 	// samples-per-millisecond for this buffer~, used to convert the
 	// incoming time-in-ms signal (and the crossfade/duration times) into
 	// sample counts
-	msr = buffer_getmillisamplerate(buffer);
+	buffer_samplerate_ms = buffer_getmillisamplerate(buffer);
 
-	crossfade_samps = x->l_crossfade_ms * msr;
-	crossfade_samps = CLAMP(crossfade_samps, 0., frames / 2.);
+	crossfade_samps = x->l_crossfade_ms * buffer_samplerate_ms;
+	crossfade_samps = CLAMP(crossfade_samps, 0., buffer_frame_count / 2.);
 
 	if (x->l_duration_ms > 0.) {
 		// "duration" was given explicitly, and takes precedence over
 		// "crossfade": it defines the playable region directly, clamped
 		// to the length of the buffer, and crossfade is then shrunk (if
 		// necessary) so that duration + crossfade still fits in the buffer.
-		double duration_samps = x->l_duration_ms * msr;
-		duration_samps = CLAMP(duration_samps, 0., (double)frames);
+		double duration_samps = x->l_duration_ms * buffer_samplerate_ms;
+		duration_samps = CLAMP(duration_samps, 0., (double)buffer_frame_count);
 
-		if (duration_samps + crossfade_samps > frames) {
-			crossfade_samps = frames - duration_samps;
+		if (duration_samps + crossfade_samps > buffer_frame_count) {
+			crossfade_samps = buffer_frame_count - duration_samps;
 			if (crossfade_samps < 0.) {
 				crossfade_samps = 0.;
 			}
 		}
 
-		crossfade_offset = duration_samps;
+		crossfade_offset_samps = duration_samps;
 	}
 	else {
 		// no explicit duration: the loop uses the whole buffer, with the
 		// tail (of length crossfade_samps) reserved as crossfade material
-		crossfade_offset = frames - crossfade_samps;
+		crossfade_offset_samps = buffer_frame_count - crossfade_samps;
 	}
 
-	while (n--) {
-		time_ms = *in++;
-		findex = time_ms * msr;
 
-		// the tail (crossfade_offset..crossfade_offset+crossfade_samps)
-		// only exists as crossfade material -- it is never played back
-		// directly, so the read position is clamped to the playable
-		// [0, crossfade_offset] region.
-		findex = CLAMP(findex, 0., crossfade_offset);
-		index1 = (long)floor(findex);
+    for (long output_channel = 0; output_channel < numouts; output_channel++) {
+        t_double* in = ins[0];
+        t_double* out = outs[output_channel];
+        long n = sampleframes;
+        
+        if (output_channel < buffer_channel_count) {
+            
+            while (n--) {
+                time_ms = *in++;
+                double findex = time_ms * buffer_samplerate_ms;
 
-		if (crossfade_samps > 0. && index1 < crossfade_samps) {
-			double current = looper_interp_read(tab, findex, frames, nc, chan);
-			double shifted = looper_interp_read(tab, findex + crossfade_offset, frames, nc, chan);
+                // the tail (crossfade_offset_samps..crossfade_offset_samps+crossfade_samps)
+                // only exists as crossfade material -- it is never played back
+                // directly, so the read position is clamped to the playable
+                // [0, crossfade_offset_samps] region.
+                findex = CLAMP(findex, 0., crossfade_offset_samps);
+                long int_index = (long)floor(findex);
 
-			// equal-power curve running from 0 (start of buffer, fully
-			// weighted toward the tail-shifted read) to crossfade_samps
-			// (fully weighted toward the normal/current read)
-			double t = findex / crossfade_samps;
-			t = CLAMP(t, 0., 1.);
+                if (crossfade_samps > 0. && int_index < crossfade_samps) {
+                    double current = looper_interp_read(buffer_data, findex, buffer_frame_count, buffer_channel_count, output_channel);
+                    double shifted = looper_interp_read(buffer_data, findex + crossfade_offset_samps, buffer_frame_count, buffer_channel_count, output_channel);
 
-			double gain_current = sin(t * M_PI * 0.5);
-			double gain_shifted = cos(t * M_PI * 0.5);
+                    // equal-power curve running from 0 (start of buffer, fully
+                    // weighted toward the tail-shifted read) to crossfade_samps
+                    // (fully weighted toward the normal/current read)
+                    double t = findex / crossfade_samps;
+                    t = CLAMP(t, 0., 1.);
 
-			*out++ = current * gain_current + shifted * gain_shifted;
-		}
-		else {
-			*out++ = looper_interp_read(tab, findex, frames, nc, chan);
-		}
-	}
+                    double gain_current = sin(t * M_PI * 0.5);
+                    double gain_shifted = cos(t * M_PI * 0.5);
+
+                    *out++ = current * gain_current + shifted * gain_shifted;
+                }
+                else {
+                    *out++ = looper_interp_read(buffer_data, findex, buffer_frame_count, buffer_channel_count, output_channel);
+                }
+            }
+        } else {
+            long n = sampleframes;
+            while (n--) {
+                *out++ = 0.0;
+            }
+        }
+    }
 
 	buffer_unlocksamples(buffer);
 	return;
 zero:
-	while (n--) {
-		*out++ = 0.0;
-	}
+    for (long channel = 0; channel < numouts; channel++) {
+        t_double* out = outs[channel];
+        long n = sampleframes;
+        while (n--) {
+            *out++ = 0.0;
+        }
+    }
 }
 
 
@@ -231,24 +284,13 @@ void looper_set(t_looper* x, t_symbol* s)
 }
 
 
-void looper_in1(t_looper* x, long n)
-{
-	if (n) {
-		x->l_chan = MAX(n, 1) - 1;
-	}
-	else {
-		x->l_chan = 0;
-	}
-}
-
-
 void looper_dsp64(t_looper* x, t_object* dsp64, short* count, double samplerate, long maxvectorsize, long flags)
 {
 	dsp_add64(dsp64, (t_object*)x, (t_perfroutine64)looper_perform64, 0, NULL);
 }
 
 
-// this lets us double-click on looper~ to open up the buffer~ it references
+// this lets us double-click on jmp.looper~ to open up the buffer~ it references
 void looper_dblclick(t_looper* x)
 {
 	buffer_view(buffer_ref_getobject(x->l_buffer_reference));
@@ -258,12 +300,11 @@ void looper_dblclick(t_looper* x)
 void looper_assist(t_looper* x, void* b, long m, long a, char* s)
 {
 	if (m == ASSIST_OUTLET) {
-		snprintf(s, 256, "(signal) Interpolated Sample Value at Time");
+        snprintf(s, 256, "(signal) Channel %ld Output", a + 1);
 	}
 	else {
 		switch (a) {
-		case 0:	snprintf(s, 256, "(signal) Time in ms"); break;
-		case 1:	snprintf(s, 256, "Audio Channel In buffer~"); break;
+		    case 0:	snprintf(s, 256, "(signal) Time in ms"); break;
 		}
 	}
 }
@@ -272,29 +313,37 @@ void looper_assist(t_looper* x, void* b, long m, long a, char* s)
 void* looper_new(t_symbol* s, long argc, t_atom* argv)
 {
 	t_looper* x = (t_looper*)object_alloc(looper_class);
-	t_symbol* bufname = NULL;
-	long chan = 0;
 
-	dsp_setup((t_pxobject*)x, 1);
-	intin((t_object*)x, 1);
-	outlet_new((t_object*)x, "signal");
+	if (x) {
+		t_symbol* buffer_name = NULL;
+		long output_channel_count = 1;
+		long args_offset = attr_args_offset(argc, argv);
 
-	x->l_crossfade_ms = 0.;		// default: no crossfade
-	x->l_duration_ms = 0.;			// default: unspecified -> use the whole buffer
+		dsp_setup((t_pxobject*)x, 1);
 
-	// first two (non-attribute) arguments: buffer name, channel
-	if (argc >= 1 && atom_gettype(argv) == A_SYM) {
-		bufname = atom_getsym(argv);
+		x->l_crossfade_ms = 0.;		// default: no crossfade
+		x->l_duration_ms = 0.;		// default: unspecified -> use the whole buffer
+
+		if (args_offset > 0 && atom_gettype(argv) == A_SYM) {
+			buffer_name = atom_getsym(argv);
+		}
+		if (args_offset > 1) {
+			output_channel_count = atom_getlong(argv + 1);
+            if (output_channel_count < 1) {
+                output_channel_count = 1;
+            }
+		}
+
+        x->l_output_channel_count = output_channel_count;
+
+        for (int c = 0; c < output_channel_count; c++) {
+            outlet_new((t_object*)x, "signal");
+        }
+
+		looper_set(x, buffer_name);
+
+		attr_args_process(x, argc, argv);
 	}
-	if (argc >= 2) {
-		chan = atom_getlong(argv + 1);
-	}
-
-	looper_set(x, bufname);
-	looper_in1(x, chan);
-
-	// process any remaining/attribute args, e.g. @crossfade 50 @duration 2000
-	attr_args_process(x, argc, argv);
 
 	return (x);
 }
