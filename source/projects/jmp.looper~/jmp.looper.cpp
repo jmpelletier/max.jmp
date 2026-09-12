@@ -154,7 +154,6 @@ static inline double looper_interp_read(t_float* tab, double findex, long frames
 	}
 }
 
-
 void looper_perform64(t_looper* x, t_object* dsp64, double** ins, long numins, double** outs, long numouts, long sampleframes, long flags, void* userparam)
 {
 	t_float* buffer_data;
@@ -215,47 +214,55 @@ void looper_perform64(t_looper* x, t_object* dsp64, double** ins, long numins, d
 	}
 
 
-    for (long output_channel = 0; output_channel < numouts; output_channel++) {
-        t_double* in = ins[0];
-        t_double* out = outs[output_channel];
-        long n = sampleframes;
-        
-        if (output_channel < buffer_channel_count) {
-            
-            while (n--) {
-                time_ms = *in++;
-                double findex = time_ms * buffer_samplerate_ms;
+	// Loop over the samples in this vector. Note that the input vector must be
+	// read *before* any output is written: MSP is free to hand us the same
+	// memory for an input and an output vector (in-place processing), so
+	// filling outs[0] first would clobber the time signal that the remaining
+	// channels still need to read.
+    for (long i = 0; i < sampleframes; i++) {
+        time_ms = ins[0][i]; // Read the timestamp for this sample
 
-                // the tail (crossfade_offset_samps..crossfade_offset_samps+crossfade_samps)
-                // only exists as crossfade material -- it is never played back
-                // directly, so the read position is clamped to the playable
-                // [0, crossfade_offset_samps] region.
-                findex = CLAMP(findex, 0., crossfade_offset_samps);
-                long int_index = (long)floor(findex);
+		// Convert the timestamp to a fractional buffer index
+        double findex = time_ms * buffer_samplerate_ms;
 
-                if (crossfade_samps > 0. && int_index < crossfade_samps) {
-                    double current = looper_interp_read(buffer_data, findex, buffer_frame_count, buffer_channel_count, output_channel);
-                    double shifted = looper_interp_read(buffer_data, findex + crossfade_offset_samps, buffer_frame_count, buffer_channel_count, output_channel);
+        // the tail (crossfade_offset_samps..crossfade_offset_samps+crossfade_samps)
+        // only exists as crossfade material -- it is never played back
+        // directly, so the read position is clamped to the playable
+        // [0, crossfade_offset_samps] region.
+        findex = CLAMP(findex, 0., crossfade_offset_samps);
+        long int_index = (long)floor(findex);
 
-                    // equal-power curve running from 0 (start of buffer, fully
-                    // weighted toward the tail-shifted read) to crossfade_samps
-                    // (fully weighted toward the normal/current read)
-                    double t = findex / crossfade_samps;
-                    t = CLAMP(t, 0., 1.);
+		// The read position, and therefore the crossfade gains, are the same for
+		// every output channel, so they only need to be computed once per sample
+        bool in_crossfade = (crossfade_samps > 0. && int_index < crossfade_samps);
+        double gain_current = 0.;
+        double gain_shifted = 0.;
 
-                    double gain_current = sin(t * M_PI * 0.5);
-                    double gain_shifted = cos(t * M_PI * 0.5);
+        if (in_crossfade) {
+            // equal-power curve running from 0 (start of buffer, fully
+            // weighted toward the tail-shifted read) to crossfade_samps
+            // (fully weighted toward the normal/current read)
+            double t = findex / crossfade_samps;
+            t = CLAMP(t, 0., 1.);
 
-                    *out++ = current * gain_current + shifted * gain_shifted;
-                }
-                else {
-                    *out++ = looper_interp_read(buffer_data, findex, buffer_frame_count, buffer_channel_count, output_channel);
-                }
+            gain_current = sin(t * M_PI * 0.5);
+            gain_shifted = cos(t * M_PI * 0.5);
+        }
+
+		// Loop over the output channels
+        for (long output_channel = 0; output_channel < numouts; output_channel++) {
+			// It's possible that we have more output channels than there are channels in the buffer
+            if (output_channel >= buffer_channel_count) {
+                outs[output_channel][i] = 0.0; // Output 0 for channels that exceed the buffer's channel count
             }
-        } else {
-            long n = sampleframes;
-            while (n--) {
-                *out++ = 0.0;
+            else if (in_crossfade) {
+                double current = looper_interp_read(buffer_data, findex, buffer_frame_count, buffer_channel_count, output_channel);
+                double shifted = looper_interp_read(buffer_data, findex + crossfade_offset_samps, buffer_frame_count, buffer_channel_count, output_channel);
+
+                outs[output_channel][i] = current * gain_current + shifted * gain_shifted;
+            }
+            else {
+                outs[output_channel][i] = looper_interp_read(buffer_data, findex, buffer_frame_count, buffer_channel_count, output_channel);
             }
         }
     }
